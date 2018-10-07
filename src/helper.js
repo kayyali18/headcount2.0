@@ -40,9 +40,23 @@ export default class DistrictRepository {
     let filtered = dataset.filter(entry => {
       if (entry.location.includes(capitalised)) return entry
     })
+
+    //refactor when possible
     filtered = filtered.filter(entry => {
-      if (entry.location[0] === capitalised[0]) return entry
+      if (capitalised.length > 1) {
+        if (entry.location[0] === capitalised[0] && entry.location[1] === capitalised[1]) return entry
+      } else {
+        if (entry.location[0] === capitalised[0]) return entry
+      }
     })
     return filtered
   };
+
+  findMultipleMatches = data => {
+    const matches = []
+    data.forEach(element => {
+      matches.push(this.findByName(element))
+    })
+    return matches
+  }
 }

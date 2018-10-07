@@ -375,6 +375,18 @@ h1 {
   z-index: 0;
 }
 
+.l-search-table {
+  display: grid;
+  grid-template-areas: "GO-btn table";
+  grid-template-columns: 2fr 4fr;
+}
+.l-search-table table {
+  grid-area: table;
+}
+.l-search-table btn {
+  grid-area: GO-btn;
+}
+
 .welcome-screen {
   display: grid;
   grid-template-areas: "title" "form";
@@ -473,6 +485,7 @@ h1 {
  *  */
 .search-area {
   background-color: #f9f6f6;
+  overflow: scroll;
 }
 .search-area .search-nav {
   overflow: scroll;
@@ -488,7 +501,6 @@ h1 {
   color: black;
   font-size: 24px;
   height: 3rem;
-  padding-left: 15px;
   text-align: center;
   width: 50vw;
 }
@@ -515,6 +527,32 @@ h1 {
   background-color: #f9f6f6;
   cursor: pointer;
   font-weight: 700;
+}
+.search-area #search-area-btn {
+  position: relative;
+}
+
+.alphabet-results {
+  font-size: 20px;
+  text-align: center;
+  width: 50vw;
+}
+.alphabet-results thead {
+  background-color: #f56924;
+  color: #f9f6f6;
+}
+.alphabet-results th {
+  height: 2rem;
+  margin-bottom: 20px;
+}
+.alphabet-results tbody tr {
+  background-color: #004263;
+  color: #f9f6f6;
+  height: 50px;
+}
+.alphabet-results tbody .selected {
+  color: white;
+  background-color: #f56924;
 }
 
 .submit-svg {
