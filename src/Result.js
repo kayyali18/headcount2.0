@@ -12,6 +12,14 @@ class Result extends Component {
   constructor(props) {
     super(props)
     this.sorted = this.sortResults(this.props.entry)
+    this.state = {
+      selected: '',
+      class: ''
+    }
+  }
+
+  className = () => {
+    return 'hello'
   }
 
   sortResults = entry => {
@@ -30,13 +38,29 @@ class Result extends Component {
 
     return graphData
   };
+
+  selected = (boolean) => {
+    if (boolean) return 'selected'
+    return ''
+  }
+
+  handleSelect = () => {
+    let condition = (this.props.selectedResults[0] === this.props.entry || this.props.selectedResults[1] === this.props.entry)
+    this.props.handleSelect(this.props.entry, condition)
+    this.setState({
+      selected: this.selected(!condition)
+    })
+    
+  }
+
+
   render() {
     return (
-      <article className="result-card">
+      <article className={`result-card ${this.state.selected}`} onClick={this.handleSelect}>
         <h3>{this.props.entry.location}</h3>
         <XYPlot
-          width={window.innerWidth * 0.2}
-          height={window.innerHeight * 0.2}
+          width={window.innerWidth * 0.35}
+          height={window.innerHeight * 0.35}
         >
           <XAxis />
           <YAxis />
@@ -55,5 +79,7 @@ class Result extends Component {
 export default Result
 
 Result.propTypes = {
-  entry: PropTypes.object
+  entry: PropTypes.object,
+  selectedResults: PropTypes.array,
+  handleSelect: PropTypes.func
 }
